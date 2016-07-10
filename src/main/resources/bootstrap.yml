@@ -1,5 +1,5 @@
 spring:
-    application.name: vault-demo
-    cloud.vault:
-        token: f6569435-4a10-82b2-40a5-f6eea561a84a
-        scheme: http
+  application.name: vault-demo
+  cloud.vault.token: 00000000-0000-0000-0000-000000000000
+  cloud.vault.ssl.trust-store: file:work/keystore.jks
+  cloud.vault.ssl.trust-store-password: changeit
