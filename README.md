@@ -17,6 +17,9 @@ When the Vault server is started, it must be provided with a `secret backend` so
 consul agent -dev -node MyConsulServer
 ```
 
+http://localhost:8500/
+
+
 Once started, the Vault is in a `sealed` state. (in consul will be visible), it knows where is the secret backend but does not know how to decrypt it.
 
 
@@ -26,3 +29,35 @@ Unsealing is the process of reconstructing this `master key`.
 
 Instead of distributing this master key as a single key to an operator uses this algorithm:
 https://en.wikipedia.org/wiki/Shamir%27s_Secret_Sharing
+
+
+```
+GPG:
+brew install gnupg
+
+gpg --list-keys
+
+gpg --gen-key
+gpg --export 6B7476E1 | base64 > hansolo.asc
+
+gpg --gen-key
+gpg --export 54361D6A | base64 > jacksparrow.asc
+
+vault init -key-shares=3 -key-threshold=2 -pgp-keys="hansolo.asc,jacksparrow.asc,keybase:altfatterz"
+```
+
+When decrypting not that matters the order
+
+for KeyBase:
+echo "c1c0..." | xxd -r -p | keybase pgp decrypt
+
+For gpg this worked:
+echo "c1c0..." | xxd -r -p | gpg -d
+
+```
+$ keybase pgp select --only-import
+#    Algo    Key Id             Created   UserId
+=    ====    ======             =======   ======
+1    2048R   971132E36B7476E1             Han Solo <han.solo@gmail.com>
+2    2048R   60218A6454361D6A             Jack Sparrow <jack.sparrow@gmail.com>
+```
