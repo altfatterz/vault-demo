@@ -1,6 +1,6 @@
 spring:
   application.name: vault-demo
   # generated during vault initialization
-  cloud.vault.token: 13aafb23-3fb8-cdf7-6a46-7c184b182c56
+  cloud.vault.token: f5d1d982-2884-cd61-7aa5-1ab1d21470b1
   cloud.vault.ssl.trust-store: file:work/keystore.jks
   cloud.vault.ssl.trust-store-password: changeit
