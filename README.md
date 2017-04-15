@@ -1,5 +1,3 @@
-### Vault without SSL
-
 1. Install vault
 
 ```bash
@@ -10,10 +8,17 @@ $ brew install vault
 ```bash
 $ vault server -dev-root-token-id='00000000-0000-0000-0000-000000000000' -dev
 ```
-3. Run Example in the `vault-without-ssl` module
 
-### Vault with SSL
+### Vault without SSL
+ 
+Run Example in the `vault-without-ssl` module
 
+### VaultPropertySource
+
+```bash
+$ vault write secret/myApp/config database.url=localhost database.username=foo database.password=bar
+```
+Run Example in the `vault-property-source` module
 
 
 ### Vault config 

@@ -1,4 +1,4 @@
-package zoltanaltfatter;
+package com.zoltanaltfatter;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,13 +19,13 @@ import java.net.URI;
 
 @Slf4j
 @SpringBootApplication
-public class VaultDemoApplication implements CommandLineRunner {
+public class ConnectToVault implements CommandLineRunner {
 
 	@Autowired
 	private VaultTemplate vaultTemplate;
 
 	public static void main(String[] args) {
-		SpringApplication.run(VaultDemoApplication.class, args);
+		SpringApplication.run(ConnectToVault.class, args);
 	}
 
 	@Override
@@ -33,10 +33,10 @@ public class VaultDemoApplication implements CommandLineRunner {
 
 		Secret secret = new Secret("bar");
 
-		vaultTemplate.write("secret/myapplication/foo", secret);
+		vaultTemplate.write("secret/myApp/foo", secret);
 		log.info("Wrote data to Vault");
 
-		VaultResponseSupport<Secret> response = vaultTemplate.read("secret/myapplication/foo", Secret.class);
+		VaultResponseSupport<Secret> response = vaultTemplate.read("secret/myApp/foo", Secret.class);
 		log.info("Retrieved data {} from Vault", response.getData().getPassword());
 	}
 
