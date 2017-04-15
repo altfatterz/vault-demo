@@ -1,3 +1,23 @@
+### Vault without SSL
+
+1. Install vault
+
+```bash
+$ brew install vault
+```
+
+2. Start vault
+```bash
+$ vault server -dev-root-token-id='00000000-0000-0000-0000-000000000000' -dev
+```
+3. Run Example in the `vault-without-ssl` module
+
+### Vault with SSL
+
+
+
+### Vault config 
+
 vault server -config vault.conf
 
 vault init (default is 5 keys with threshold 3)
