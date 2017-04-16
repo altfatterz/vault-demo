@@ -9,6 +9,7 @@
 	<modules>
 		<module>vault-without-ssl</module>
 		<module>vault-property-source</module>
+		<module>vault-with-ssl</module>
 	</modules>
 	<packaging>pom</packaging>
 

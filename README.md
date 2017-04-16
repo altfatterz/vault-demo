@@ -21,9 +21,18 @@ $ vault write secret/myApp/config database.url=localhost database.username=foo d
 Run Example in the `vault-property-source` module
 
 
-### Vault config 
+### Vault with SSL
 
-vault server -config vault.conf
+Run `create_certificates.sh` script.
+
+```bash
+$ vault server -config="vault.conf" -dev-root-token-id="00000000-0000-0000-0000-000000000000" -dev
+```
+Run Example in the `vault-with-ssl` module
+
+
+### Playing with Vault
+
 
 vault init (default is 5 keys with threshold 3)
 vault init -key-shares=5 -key-threshold=2

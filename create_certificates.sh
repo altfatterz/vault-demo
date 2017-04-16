@@ -14,7 +14,6 @@ fi
 mkdir -p ${CA_DIR}/private ${CA_DIR}/certs ${CA_DIR}/crl ${CA_DIR}/csr ${CA_DIR}/newcerts ${CA_DIR}/intermediate
 
 echo "[INFO] Generating CA private key"
-# Less bits = less secure = faster to generate
 openssl genrsa -passout pass:changeit -aes256 -out ${CA_DIR}/private/ca.key.pem 2048
 
 chmod 400 ${CA_DIR}/private/ca.key.pem
@@ -25,7 +24,7 @@ openssl req -config ${DIR}/openssl.cnf \
       -new -x509 -days 7300 -sha256 -extensions v3_ca \
       -out ${CA_DIR}/certs/ca.cert.pem \
       -passin pass:changeit \
-      -subj "/C=NN/ST=Unknown/L=Unknown/O=spring-cloud-vault-config/CN=CA Certificate"
+      -subj "/C=NN/ST=Unknown/L=Unknown/O=spring-vault/CN=CA Certificate"
 
 echo "[INFO] Prepare CA database"
 echo 1000 > ${CA_DIR}/serial
@@ -47,7 +46,7 @@ openssl req -config ${DIR}/openssl.cnf \
       -key ${CA_DIR}/private/localhost.key.pem \
       -passin pass:changeit \
       -new -sha256 -out ${CA_DIR}/csr/localhost.csr.pem \
-      -subj "/C=NN/ST=Unknown/L=Unknown/O=spring-cloud-vault-config/CN=localhost"
+      -subj "/C=NN/ST=Unknown/L=Unknown/O=spring-vault/CN=localhost"
 
 echo "[INFO] Signing certificate request"
 openssl ca -config ${DIR}/openssl.cnf \
